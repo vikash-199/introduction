@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Card from "./shared/Card";
 import RatingSelect from "./RatingSelect";
-function FeedbackForm() {
+function FeedbackForm({ handleAdd }) {
   const [text, setText] = useState("");
   const [rating, setRating] = useState(10);
   const [btnDisabled, setBtnDisabled] = useState(true);
@@ -22,8 +22,12 @@ function FeedbackForm() {
   function handleSubmit(e) {
     e.preventDefault();
     if (text.trim().length > 10) {
-      setMessage("Text must be at least 10 characters");
-      return;
+      const newFeedback = { rating, text };
+      handleAdd(newFeedback);
+      setText("");
+      setRating(10);
+      setBtnDisabled(true);
+      setMessage("Thank you for your feedback!");
     }
   }
   return (

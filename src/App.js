@@ -11,11 +11,14 @@ function App() {
       setFeedback(feedback.filter((item) => item.id !== id));
     }
   };
+  function handleAdd(newFeedback) {
+    setFeedback([...feedback, newFeedback]);
+  }
   return (
     <>
       <Header />
       <div className="container">
-        <FeedbackForm />
+        <FeedbackForm handleAdd={handleAdd} />
         <FeedbackStats feedback={feedback} />
         <FeedbackList handleDelete={deleteFeedback} feedback={feedback} />
       </div>
