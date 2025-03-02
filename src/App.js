@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import Header from "./components/Header";
 import FeedbackList from "./components/FeedbackList";
 import { useState } from "react";
@@ -12,7 +13,8 @@ function App() {
     }
   };
   function handleAdd(newFeedback) {
-    setFeedback([...feedback, newFeedback]);
+    newFeedback.id = uuidv4();
+    setFeedback([newFeedback, ...feedback]);
   }
   return (
     <>
